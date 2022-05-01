@@ -24,15 +24,34 @@ void Command_GameController::Execute()
 	{
 		while (m_render->window().pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed) m_render->window().close();
+			if (event.type == sf::Event::Closed) 
+            {
+                m_render->window().close();
+            }
+
 			if (event.type == sf::Event::KeyPressed)
 			{
 				// get the pressed key - do the corresponding action
-				if (event.key.code == sf::Keyboard::Escape) m_render->window().close();
-				if (event.key.code == sf::Keyboard::Left) m_game->Action_Move(Direction::Left);
-				if (event.key.code == sf::Keyboard::Right) m_game->Action_Move(Direction::Right);
-				if (event.key.code == sf::Keyboard::Up) m_game->Action_Move(Direction::Up);
-				if (event.key.code == sf::Keyboard::Down) m_game->Action_Move(Direction::Down);
+				if (event.key.code == sf::Keyboard::Escape) 
+                {
+                    m_render->window().close();
+                }
+				if (event.key.code == sf::Keyboard::Left) 
+                {
+                    m_game->Action_Move(Direction::Left);
+                }
+				if (event.key.code == sf::Keyboard::Right) 
+                {
+                    m_game->Action_Move(Direction::Right);
+                }
+				if (event.key.code == sf::Keyboard::Up) 
+                {
+                    m_game->Action_Move(Direction::Up);
+                }
+				if (event.key.code == sf::Keyboard::Down) 
+                {
+                    m_game->Action_Move(Direction::Down);
+                }
 				// new game
 				if (event.key.code == sf::Keyboard::F2)
 				{
@@ -43,7 +62,10 @@ void Command_GameController::Execute()
 		}
 
 		// if counter is not zero - continue to intermix the puzzle
-		if (move_counter-- > 0) m_game->Action_Move((Direction)(rand() % 4));
+		if (move_counter-- > 0) 
+        {
+            m_game->Action_Move((Direction)(rand() % 4));
+        }
 	}
 }
 

@@ -49,18 +49,36 @@ bool Subject_GameModel::Check()
 	return true;
 }
 
-void Subject_GameModel::Action_Move(Direction direction)
+int Subject_GameModel::GetMoveIndex(Direction direction)
 {
 	// calculate row and column of the empty cell
 	int col = empty_index % SIZE;
 	int row = empty_index / SIZE;
-
-	// could we intermix, calculate an index of the cell beeing moved
 	int move_index = -1;
-	if (direction == Direction::Left && col < (SIZE - 1)) move_index = empty_index + 1;
-	if (direction == Direction::Right && col > 0) move_index = empty_index - 1;
-	if (direction == Direction::Up && row < (SIZE - 1)) move_index = empty_index + SIZE;
-	if (direction == Direction::Down && row > 0) move_index = empty_index - SIZE;
+
+	if (direction == Direction::Left && col < (SIZE - 1)) 
+    {
+        move_index = empty_index + 1;
+    }
+	if (direction == Direction::Right && col > 0) 
+    {
+        move_index = empty_index - 1;
+    }
+	if (direction == Direction::Up && row < (SIZE - 1)) 
+    {
+        move_index = empty_index + SIZE;
+    }
+	if (direction == Direction::Down && row > 0) 
+    {
+        move_index = empty_index - SIZE;
+    }
+    return (move_index);
+}
+
+void Subject_GameModel::Action_Move(Direction direction)
+{
+	// calculate an index of the cell beeing moved
+    int move_index = GetMoveIndex(direction);
 
 	// move the cell to the empty cell position
 	if (empty_index >= 0 && move_index >= 0)
@@ -72,6 +90,7 @@ void Subject_GameModel::Action_Move(Direction direction)
 	}
 	solved = Check();
 
-    Notify(); // notify all registered observers by calling Update() of each of them
+    // notify all registered observers by calling Update() of each of them
+    Notify(); 
 }
 

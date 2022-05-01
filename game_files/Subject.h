@@ -33,6 +33,7 @@ public:
 	Subject_GameModel();
 	void Init();
 	bool Check();
+    int GetMoveIndex(Direction direction);
 	void Action_Move(Direction direction);
 	bool IsSolved() { return solved; }
     int* GetState() { return elements; }

@@ -12,6 +12,5 @@ cd build
 cmake ..  
 cmake -DCMAKE_INSTALL_PREFIX=*path_to_install_programm*  
 make  
-make install  
 
 Будет установлено в подкатолог bin указанного пути (path_to_install_programm)
